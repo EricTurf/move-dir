@@ -1,0 +1,37 @@
+{
+  "name": "move-dir",
+  "version": "0.0.1",
+  "description": "Copy directory from one location to another",
+  "main": "build/index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "nodemon build/index.js",
+    "test": "jest",
+    "s:test": "node build/test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EricTurf/move-dir.git"
+  },
+  "keywords": [
+    "move",
+    "copy",
+    "fs",
+    "rxjs",
+    "Observables",
+    "files"
+  ],
+  "author": "ericTurf",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/EricTurf/move-dir/issues"
+  },
+  "homepage": "https://github.com/EricTurf/move-dir#readme",
+  "devDependencies": {
+    "nodemon": "^1.18.2",
+    "prettier": "^1.13.7"
+  },
+  "dependencies": {
+    "rxjs": "^6.2.2"
+  }
+}
