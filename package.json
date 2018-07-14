@@ -4,10 +4,10 @@
   "description": "Copy directory from one location to another",
   "main": "build/index.js",
   "scripts": {
+    "prepublish": "yarn build",
     "build": "tsc",
     "start": "nodemon build/index.js",
-    "test": "jest",
-    "s:test": "node build/test.js"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
