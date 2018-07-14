@@ -14,6 +14,33 @@ or
 npm i --save move-dir
 ```
 
+### Example
+
+Assuming you have a directory called input with the following structure
+
+```
+input
+├── level 1
+|   ├── level 2
+|   |   └── file
+|   ├── level 2
+|   |   └── level 3
+            └── file
+```
+
+If you want to move this a brand new COOL directory, `moveDir` will create the COOL directory with the following structure
+
+```
+COOL
+├──input(level 1)
+|   ├── level 2
+|        ├── level 3
+|        |   └── file
+|        ├── level 3
+|              └── level 4
+|                    └── file
+```
+
 ## Usage
 
 ### Rxjs
