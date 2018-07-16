@@ -12,7 +12,7 @@ export default (
 ): Observable<any> | Promise<any> => {
   const { asPromise } = options;
 
-  const moveDir$ = moveDir({ inputDir, outputDir });
+  const moveDir$ = moveDir({ inputDir: './src', outputDir: './test' });
 
   return asPromise ? moveDir$.toPromise() : moveDir$;
 };

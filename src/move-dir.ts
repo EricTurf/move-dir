@@ -6,7 +6,7 @@ export type Directories = {
 import fs, { Stats } from 'fs';
 import path from 'path';
 import { Observable, bindNodeCallback, of } from 'rxjs';
-import { concatMap, switchAll } from 'rxjs/operators';
+import { concatMap, switchAll, tap } from 'rxjs/operators';
 
 import makeDirP from './operators/make-dir-p';
 import copyFile from './operators/copy-file';
@@ -24,16 +24,10 @@ const moveDir = (directories: Directories): Observable<any> => {
       return lstat(inputDir).pipe(
         concatMap(
           (stat: Stats): Observable<any> => {
-            if (stat.isDirectory()) {
-              return of(directories).pipe(
-                makeDirP(),
-                moveContent()
-              );
-            } else {
-              return of(directories).pipe(
-                copyFile(inputDir.split('/')[inputDir.length - 1])
-              );
-            }
+            return of(directories).pipe(
+              makeDirP(),
+              moveContent()
+            );
           }
         )
       );
@@ -41,7 +35,7 @@ const moveDir = (directories: Directories): Observable<any> => {
   );
 };
 
-const moveContent = () => (
+export const moveContent = () => (
   source$: Observable<Directories>
 ): Observable<Directories> => {
   return source$.pipe(
