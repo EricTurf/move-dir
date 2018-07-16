@@ -52,7 +52,7 @@ const createFileStructure = () => {
 
 const removeCreatedDirectories = () => {
   rimraf.sync(inputDir);
-  // rimraf.sync(outputDir);
+  rimraf.sync(outputDir);
 };
 
 describe('moveDir', () => {

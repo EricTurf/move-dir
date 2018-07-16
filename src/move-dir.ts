@@ -6,7 +6,7 @@ export type Directories = {
 import fs, { Stats } from 'fs';
 import path from 'path';
 import { Observable, bindNodeCallback, of } from 'rxjs';
-import { concatMap, switchAll, tap } from 'rxjs/operators';
+import { concatMap, switchAll } from 'rxjs/operators';
 
 import makeDirP from './operators/make-dir-p';
 import copyFile from './operators/copy-file';
@@ -35,7 +35,7 @@ const moveDir = (directories: Directories): Observable<any> => {
   );
 };
 
-export const moveContent = () => (
+const moveContent = () => (
   source$: Observable<Directories>
 ): Observable<Directories> => {
   return source$.pipe(

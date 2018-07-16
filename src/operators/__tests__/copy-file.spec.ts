@@ -1,16 +1,10 @@
 import fs from 'fs';
-import { of, bindNodeCallback } from 'rxjs';
-import { promisify } from 'util';
+import { of } from 'rxjs';
+
 import rimraf from 'rimraf';
 import path from 'path';
 
 import copyFile from '../copy-file';
-import { concatMap } from '../../../node_modules/rxjs/operators';
-
-const mkdir = bindNodeCallback(fs.mkdir);
-const writeFile = bindNodeCallback(fs.writeFile);
-const unlink = promisify(fs.unlink);
-const exists = promisify(fs.exists);
 
 describe('copyFile', () => {
   const inputDir = './';

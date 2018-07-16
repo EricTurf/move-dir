@@ -16,13 +16,6 @@ export default (file: string) => (
 
         const originalLocation = path.join(inputDir, file);
 
-        // console.log({
-        //   inputDir,
-        //   split: inputDir.split('/'),
-        //   index: inputDir.length - 1,
-        //   last: inputDir.split('/')[inputDir.split('/').length - 1],
-        // });
-
         const newLocation = path.join(
           outputDir,
           inputDir.split('/')[inputDir.split('/').length - 1],
