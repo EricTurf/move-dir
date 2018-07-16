@@ -1,5 +1,6 @@
 import { Observable, bindNodeCallback } from 'rxjs';
 import fs from 'fs';
+import path from 'path';
 
 import { Directories } from '../move-dir';
 import { concatMap, catchError, mapTo } from 'rxjs/operators';
@@ -14,7 +15,10 @@ export default () => (
     concatMap((directories: Directories) => {
       const { outputDir, inputDir } = directories;
 
-      const newDirectory = `${outputDir}/${inputDir.split('/').pop()}`;
+      const newDirectory = path.join(
+        outputDir,
+        inputDir.split('/')[inputDir.split('/').length - 1]
+      );
 
       return access(newDirectory).pipe(
         //If directory exists return directories

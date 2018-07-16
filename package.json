@@ -4,7 +4,7 @@
   "description": "Copy directory from one location to another",
   "main": "build/index.js",
   "scripts": {
-    "prepare": "yarn build",
+    "prepublishOnly": "yarn build",
     "build": "tsc",
     "start": "nodemon build/index.js",
     "test": "jest"
@@ -28,8 +28,14 @@
   },
   "homepage": "https://github.com/EricTurf/move-dir#readme",
   "devDependencies": {
+    "@types/jest": "^23.1.6",
+    "@types/rimraf": "^2.0.2",
+    "jest": "^23.4.1",
     "nodemon": "^1.18.2",
-    "prettier": "^1.13.7"
+    "prettier": "^1.13.7",
+    "rimraf": "^2.6.2",
+    "ts-jest": "^23.0.0",
+    "typescript": "^2.9.2"
   },
   "dependencies": {
     "rxjs": "^6.2.2"

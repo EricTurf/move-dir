@@ -24,16 +24,10 @@ const moveDir = (directories: Directories): Observable<any> => {
       return lstat(inputDir).pipe(
         concatMap(
           (stat: Stats): Observable<any> => {
-            if (stat.isDirectory()) {
-              return of(directories).pipe(
-                makeDirP(),
-                moveContent()
-              );
-            } else {
-              return of(directories).pipe(
-                copyFile(inputDir.split('/')[inputDir.length - 1])
-              );
-            }
+            return of(directories).pipe(
+              makeDirP(),
+              moveContent()
+            );
           }
         )
       );

@@ -13,5 +13,7 @@
     "moduleResolution": "node",
     "baseUrl": "./",
     "esModuleInterop": true
-  }
+  },
+  "include": ["src/**/*"],
+  "exclude": ["__tests__", "**/*.spec.ts"]
 }
