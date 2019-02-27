@@ -6,7 +6,7 @@ export type Directories = {
 import fs, { Stats } from 'fs';
 import path from 'path';
 import { Observable, bindNodeCallback, of } from 'rxjs';
-import { concatMap, switchAll } from 'rxjs/operators';
+import { concatMap, switchAll, tap, catchError } from 'rxjs/operators';
 
 import makeDirP from './operators/make-dir-p';
 import copyFile from './operators/copy-file';
@@ -31,6 +31,10 @@ const moveDir = (directories: Directories): Observable<any> => {
           }
         )
       );
+    }),
+    catchError(e => {
+      console.log(e);
+      throw new Error(e);
     })
   );
 };
@@ -43,10 +47,16 @@ const moveContent = () => (
       const { inputDir, outputDir } = directories;
 
       return readDir(inputDir).pipe(
+        tap(console.log),
         switchAll(),
         concatMap((dirContent: string) =>
           lstat(`${inputDir}/${dirContent}`).pipe(
             concatMap((stat: Stats) => {
+              console.log(
+                `${inputDir}/${dirContent}`,
+                dirContent,
+                stat.isDirectory()
+              );
               if (stat.isDirectory()) {
                 //If it is a directory, recursively call yourself
                 return moveDir({
@@ -59,7 +69,11 @@ const moveContent = () => (
               }
             })
           )
-        )
+        ),
+        catchError(e => {
+          console.log(e);
+          throw new Error(e);
+        })
       );
     })
   );

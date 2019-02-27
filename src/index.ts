@@ -11,7 +11,7 @@ export default (
   options: Options = { asPromise: false }
 ): Observable<any> | Promise<any> => {
   const { asPromise } = options;
-
+  console.log(inputDir, outputDir);
   const moveDir$ = moveDir({ inputDir, outputDir });
 
   return asPromise ? moveDir$.toPromise() : moveDir$;
